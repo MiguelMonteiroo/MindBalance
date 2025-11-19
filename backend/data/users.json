@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "id": "user001",
+      "name": "Mariana Silva",
+      "email": "mariana.silva@empresa.com",
+      "password": "senha123",
+      "role": "colaborador",
+      "department": "Design",
+      "createdAt": "2025-01-15",
+      "preferences": {
+        "notifications": true,
+        "checkInReminder": "09:00"
+      }
+    },
+    {
+      "id": "user002",
+      "name": "Carlos Santos",
+      "email": "carlos.santos@empresa.com",
+      "password": "senha123",
+      "role": "admin",
+      "department": "RH",
+      "createdAt": "2025-01-10",
+      "preferences": {
+        "notifications": true,
+        "checkInReminder": "10:00"
+      }
+    },
+    {
+      "id": "user003",
+      "name": "Ana Costa",
+      "email": "ana.costa@empresa.com",
+      "password": "senha123",
+      "role": "colaborador",
+      "department": "Marketing",
+      "createdAt": "2025-02-01",
+      "preferences": {
+        "notifications": true,
+        "checkInReminder": "08:30"
+      }
+    },
+    {
+      "id": "user004",
+      "name": "Pedro Oliveira",
+      "email": "pedro.oliveira@empresa.com",
+      "password": "senha123",
+      "role": "colaborador",
+      "department": "TI",
+      "createdAt": "2025-01-20",
+      "preferences": {
+        "notifications": false,
+        "checkInReminder": "09:30"
+      }
+    }
+  ]
+}

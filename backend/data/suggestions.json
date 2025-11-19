@@ -1,0 +1,181 @@
+{
+  "suggestions": [
+    {
+      "id": "sug001",
+      "trigger": {
+        "mood": "<=2",
+        "energy": "<=2"
+      },
+      "message": "Percebi que você está com energia e humor baixos. Isso é um sinal importante do seu corpo. Que tal fazer uma pausa de 5 minutos e experimentar uma técnica de respiração ou alongamento?",
+      "resourcesRecommended": [1, 2],
+      "priority": "high",
+      "actions": [
+        "Fazer uma pausa de 5-10 minutos",
+        "Praticar respiração 4-7-8",
+        "Alongar o corpo",
+        "Hidratar-se",
+        "Considerar conversar com alguém"
+      ]
+    },
+    {
+      "id": "sug002",
+      "trigger": {
+        "workload": "pesada",
+        "consecutiveDays": 3
+      },
+      "message": "Você tem reportado carga de trabalho pesada nos últimos dias. É importante comunicar isso ao seu gestor e redistribuir tarefas se possível. Lembre-se: seu bem-estar é prioridade!",
+      "resourcesRecommended": [3, 7],
+      "priority": "medium",
+      "actions": [
+        "Conversar com seu gestor sobre a carga",
+        "Priorizar tarefas mais urgentes",
+        "Delegar o que for possível",
+        "Usar técnica Pomodoro para gestão de tempo",
+        "Estabelecer limites claros de horário"
+      ]
+    },
+    {
+      "id": "sug003",
+      "trigger": {
+        "mood": ">=4",
+        "energy": ">=4"
+      },
+      "message": "Que ótimo ver você bem! Continue mantendo esse equilíbrio com pausas regulares e autocuidado. Você está no caminho certo!",
+      "resourcesRecommended": [5],
+      "priority": "low",
+      "actions": [
+        "Manter rotinas saudáveis",
+        "Continuar fazendo pausas",
+        "Praticar gratidão",
+        "Compartilhar sua energia positiva com o time"
+      ]
+    },
+    {
+      "id": "sug004",
+      "trigger": {
+        "mood": "<=2",
+        "consecutiveDays": 5
+      },
+      "message": "Notei que você tem se sentido para baixo nos últimos dias. Isso pode ser um sinal de que você precisa de apoio adicional. Considere conversar com um profissional de saúde mental.",
+      "resourcesRecommended": [8, 4],
+      "priority": "high",
+      "actions": [
+        "Buscar apoio profissional (psicólogo)",
+        "Conversar com alguém de confiança",
+        "Acessar canais de suporte da empresa",
+        "Considerar tirar alguns dias de folga",
+        "Praticar meditação guiada"
+      ]
+    },
+    {
+      "id": "sug005",
+      "trigger": {
+        "workload": "pesada",
+        "mood": "<=2"
+      },
+      "message": "A combinação de carga pesada e humor baixo é preocupante. Por favor, priorize seu bem-estar: converse com seu gestor, reduza compromissos não essenciais e busque apoio.",
+      "resourcesRecommended": [1, 7, 8],
+      "priority": "high",
+      "actions": [
+        "URGENTE: Comunicar situação ao gestor",
+        "Redistribuir tarefas urgentes",
+        "Cancelar reuniões não essenciais",
+        "Praticar técnicas de alívio de estresse",
+        "Buscar apoio do RH ou profissional"
+      ]
+    },
+    {
+      "id": "sug006",
+      "trigger": {
+        "energy": "<=2",
+        "consecutiveDays": 3
+      },
+      "message": "Sua energia tem estado baixa consistentemente. Isso pode indicar necessidade de descanso mais profundo ou pode haver fatores físicos (sono, alimentação, exercícios). Avalie sua rotina.",
+      "resourcesRecommended": [2, 6],
+      "priority": "medium",
+      "actions": [
+        "Avaliar qualidade do sono",
+        "Verificar alimentação e hidratação",
+        "Incluir movimento físico na rotina",
+        "Fazer pausas mais frequentes",
+        "Considerar check-up médico se persistir"
+      ]
+    },
+    {
+      "id": "sug007",
+      "trigger": {
+        "mood": "3",
+        "energy": "3",
+        "workload": "adequada"
+      },
+      "message": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de manter suas práticas de autocuidado. Pequenas ações diárias fazem grande diferença.",
+      "resourcesRecommended": [3, 5],
+      "priority": "low",
+      "actions": [
+        "Manter pausas regulares",
+        "Continuar práticas de bem-estar",
+        "Experimentar algo novo da biblioteca de recursos",
+        "Compartilhar dicas com colegas"
+      ]
+    },
+    {
+      "id": "sug008",
+      "trigger": {
+        "workload": "leve"
+      },
+      "message": "Que ótimo ter um dia mais tranquilo! Aproveite para se organizar, aprender algo novo ou simplesmente descansar. Dias leves também são produtivos!",
+      "resourcesRecommended": [5, 3],
+      "priority": "low",
+      "actions": [
+        "Organizar tarefas futuras",
+        "Investir em aprendizado",
+        "Fazer networking interno",
+        "Documentar processos",
+        "Ou simplesmente relaxar!"
+      ]
+    }
+  ],
+  "riskPatterns": [
+    {
+      "id": "risk001",
+      "name": "Risco Alto de Burnout",
+      "criteria": {
+        "mood": "<=2",
+        "energy": "<=2",
+        "workload": "pesada",
+        "consecutiveDays": 5
+      },
+      "severity": "high",
+      "alert": "Colaborador apresenta sinais críticos de sobrecarga. Intervenção imediata recomendada."
+    },
+    {
+      "id": "risk002",
+      "name": "Sobrecarga Prolongada",
+      "criteria": {
+        "workload": "pesada",
+        "consecutiveDays": 7
+      },
+      "severity": "medium",
+      "alert": "Carga de trabalho pesada por período extenso. Reavaliar distribuição de demandas."
+    },
+    {
+      "id": "risk003",
+      "name": "Queda Abrupta de Bem-estar",
+      "criteria": {
+        "moodDrop": ">= 2pontos",
+        "period": "3dias"
+      },
+      "severity": "medium",
+      "alert": "Mudança significativa no bem-estar. Monitorar de perto e oferecer suporte."
+    },
+    {
+      "id": "risk004",
+      "name": "Desengajamento",
+      "criteria": {
+        "noCheckin": "7dias"
+      },
+      "severity": "medium",
+      "alert": "Colaborador parou de fazer check-ins. Pode indicar desengajamento ou sobrecarga extrema."
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "checkins": [
+    {
+      "id": "ck001",
+      "userId": "user001",
+      "date": "2025-11-18",
+      "time": "09:15:00",
+      "mood": 4,
+      "energy": 4,
+      "workload": "adequada",
+      "comment": "Começando a semana com disposição!",
+      "aiSuggestion": "Ótimo! Continue mantendo esse equilíbrio. Lembre-se de fazer pausas regulares."
+    },
+    {
+      "id": "ck002",
+      "userId": "user001",
+      "date": "2025-11-17",
+      "time": "14:30:00",
+      "mood": 2,
+      "energy": 2,
+      "workload": "pesada",
+      "comment": "Muitas reuniões hoje, estou cansada",
+      "aiSuggestion": "Percebi que você está se sentindo sobrecarregada. Que tal experimentar a técnica de respiração 4-7-8? Também é importante comunicar sua carga de trabalho ao seu gestor."
+    },
+    {
+      "id": "ck003",
+      "userId": "user001",
+      "date": "2025-11-16",
+      "time": "10:00:00",
+      "mood": 3,
+      "energy": 3,
+      "workload": "adequada",
+      "comment": "",
+      "aiSuggestion": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de fazer pausas."
+    },
+    {
+      "id": "ck004",
+      "userId": "user003",
+      "date": "2025-11-18",
+      "time": "08:45:00",
+      "mood": 3,
+      "energy": 4,
+      "workload": "adequada",
+      "comment": "Animada para os novos projetos",
+      "aiSuggestion": "Ótima energia para começar o dia! Aproveite esse momento produtivo."
+    },
+    {
+      "id": "ck005",
+      "userId": "user003",
+      "date": "2025-11-17",
+      "time": "11:20:00",
+      "mood": 2,
+      "energy": 2,
+      "workload": "pesada",
+      "comment": "Deadline apertado, muito estresse",
+      "aiSuggestion": "Momentos de pressão são desafiadores. Tente priorizar as tarefas mais urgentes e peça apoio se necessário."
+    },
+    {
+      "id": "ck006",
+      "userId": "user004",
+      "date": "2025-11-18",
+      "time": "09:30:00",
+      "mood": 4,
+      "energy": 5,
+      "workload": "leve",
+      "comment": "Dia tranquilo, sem muita demanda",
+      "aiSuggestion": "Que ótimo ter um dia mais leve! Aproveite para se organizar ou aprender algo novo."
+    },
+    {
+      "id": "ck007",
+      "userId": "user001",
+      "date": "2025-11-15",
+      "time": "15:00:00",
+      "mood": 3,
+      "energy": 3,
+      "workload": "adequada",
+      "comment": "Sexta-feira produtiva",
+      "aiSuggestion": "Encerrando a semana bem! Aproveite o final de semana para descansar."
+    },
+    {
+      "id": "ck008",
+      "userId": "user003",
+      "date": "2025-11-16",
+      "time": "10:15:00",
+      "mood": 2,
+      "energy": 3,
+      "workload": "pesada",
+      "comment": "Muitos projetos simultâneos",
+      "aiSuggestion": "Você tem reportado carga pesada nos últimos dias. Considere conversar com seu gestor sobre priorização."
+    },
+    {
+      "id": "ck20251119105703976897",
+      "userId": "user001",
+      "date": "2025-11-19",
+      "time": "10:57:03",
+      "mood": 4,
+      "energy": 4,
+      "workload": "adequada",
+      "comment": "Teste feito pelo HTML!",
+      "aiSuggestion": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de manter suas práticas de autocuidado. Pequenas ações diárias fazem grande diferença.",
+      "recommendedResources": [
+        3,
+        5
+      ],
+      "suggestedActions": [
+        "Manter pausas regulares",
+        "Continuar práticas de bem-estar",
+        "Experimentar algo novo da biblioteca de recursos",
+        "Compartilhar dicas com colegas"
+      ]
+    },
+    {
+      "id": "ck20251119105707989860",
+      "userId": "user001",
+      "date": "2025-11-19",
+      "time": "10:57:07",
+      "mood": 4,
+      "energy": 4,
+      "workload": "adequada",
+      "comment": "Teste feito pelo HTML!",
+      "aiSuggestion": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de manter suas práticas de autocuidado. Pequenas ações diárias fazem grande diferença.",
+      "recommendedResources": [
+        3,
+        5
+      ],
+      "suggestedActions": [
+        "Manter pausas regulares",
+        "Continuar práticas de bem-estar",
+        "Experimentar algo novo da biblioteca de recursos",
+        "Compartilhar dicas com colegas"
+      ]
+    },
+    {
+      "id": "ck20251119105709467977",
+      "userId": "user001",
+      "date": "2025-11-19",
+      "time": "10:57:09",
+      "mood": 4,
+      "energy": 4,
+      "workload": "adequada",
+      "comment": "Teste feito pelo HTML!",
+      "aiSuggestion": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de manter suas práticas de autocuidado. Pequenas ações diárias fazem grande diferença.",
+      "recommendedResources": [
+        3,
+        5
+      ],
+      "suggestedActions": [
+        "Manter pausas regulares",
+        "Continuar práticas de bem-estar",
+        "Experimentar algo novo da biblioteca de recursos",
+        "Compartilhar dicas com colegas"
+      ]
+    },
+    {
+      "id": "ck20251119105711896855",
+      "userId": "user001",
+      "date": "2025-11-19",
+      "time": "10:57:11",
+      "mood": 4,
+      "energy": 4,
+      "workload": "adequada",
+      "comment": "Teste feito pelo HTML!",
+      "aiSuggestion": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de manter suas práticas de autocuidado. Pequenas ações diárias fazem grande diferença.",
+      "recommendedResources": [
+        3,
+        5
+      ],
+      "suggestedActions": [
+        "Manter pausas regulares",
+        "Continuar práticas de bem-estar",
+        "Experimentar algo novo da biblioteca de recursos",
+        "Compartilhar dicas com colegas"
+      ]
+    },
+    {
+      "id": "ck20251119105713016225",
+      "userId": "user001",
+      "date": "2025-11-19",
+      "time": "10:57:13",
+      "mood": 4,
+      "energy": 4,
+      "workload": "adequada",
+      "comment": "Teste feito pelo HTML!",
+      "aiSuggestion": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de manter suas práticas de autocuidado. Pequenas ações diárias fazem grande diferença.",
+      "recommendedResources": [
+        3,
+        5
+      ],
+      "suggestedActions": [
+        "Manter pausas regulares",
+        "Continuar práticas de bem-estar",
+        "Experimentar algo novo da biblioteca de recursos",
+        "Compartilhar dicas com colegas"
+      ]
+    },
+    {
+      "id": "ck20251119105744061394",
+      "userId": "user001",
+      "date": "2025-11-19",
+      "time": "10:57:44",
+      "mood": 4,
+      "energy": 4,
+      "workload": "adequada",
+      "comment": "Teste feito pelo HTML!",
+      "aiSuggestion": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de manter suas práticas de autocuidado. Pequenas ações diárias fazem grande diferença.",
+      "recommendedResources": [
+        3,
+        5
+      ],
+      "suggestedActions": [
+        "Manter pausas regulares",
+        "Continuar práticas de bem-estar",
+        "Experimentar algo novo da biblioteca de recursos",
+        "Compartilhar dicas com colegas"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindBalance - Teste de API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        
+        .test-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .test-section p {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            display: none;
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .result pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .success {
+            border-left: 4px solid #28a745;
+            background: #d4edda;
+        }
+        
+        .error {
+            border-left: 4px solid #dc3545;
+            background: #f8d7da;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .status.ok {
+            background: #28a745;
+            color: white;
+        }
+        
+        .status.loading {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .status.fail {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 MindBalance</h1>
+        <p class="subtitle">Teste de API - Backend</p>
+        
+        <!-- Teste 1 -->
+        <div class="test-section">
+            <h2><span class="emoji">✅</span>Teste 1: Health Check</h2>
+            <p>Verifica se o servidor está funcionando</p>
+            <button onclick="testHealth()">Executar Teste</button>
+            <span id="status1" class="status"></span>
+            <div id="result1" class="result"></div>
+        </div>
+        
+        <!-- Teste 2 -->
+        <div class="test-section">
+            <h2><span class="emoji">🔐</span>Teste 2: Login</h2>
+            <p>Testa autenticação com email e senha</p>
+            <p><strong>Usuário:</strong> mariana.silva@empresa.com | <strong>Senha:</strong> senha123</p>
+            <button onclick="testLogin()">Executar Teste</button>
+            <span id="status2" class="status"></span>
+            <div id="result2" class="result"></div>
+        </div>
+        
+        <!-- Teste 3 -->
+        <div class="test-section">
+            <h2><span class="emoji">📝</span>Teste 3: Fazer Check-in</h2>
+            <p>Simula um check-in de bem-estar</p>
+            <button onclick="testCheckin()">Executar Teste</button>
+            <span id="status3" class="status"></span>
+            <div id="result3" class="result"></div>
+        </div>
+        
+        <!-- Teste 4 -->
+        <div class="test-section">
+            <h2><span class="emoji">📊</span>Teste 4: Dashboard Pessoal</h2>
+            <p>Busca estatísticas do usuário</p>
+            <button onclick="testDashboard()">Executar Teste</button>
+            <span id="status4" class="status"></span>
+            <div id="result4" class="result"></div>
+        </div>
+        
+        <!-- Teste 5 -->
+        <div class="test-section">
+            <h2><span class="emoji">📚</span>Teste 5: Recursos de Autocuidado</h2>
+            <p>Lista recursos disponíveis</p>
+            <button onclick="testResources()">Executar Teste</button>
+            <span id="status5" class="status"></span>
+            <div id="result5" class="result"></div>
+        </div>
+        
+        <!-- Teste 6 -->
+        <div class="test-section">
+            <h2><span class="emoji">👨‍💼</span>Teste 6: Dashboard Admin</h2>
+            <p>Visão geral da organização (dados anonimizados)</p>
+            <button onclick="testAdmin()">Executar Teste</button>
+            <span id="status6" class="status"></span>
+            <div id="result6" class="result"></div>
+        </div>
+        
+        <div class="footer">
+            <p>🎯 Todos os testes devem retornar status "OK" se o backend estiver funcionando corretamente</p>
+            <p>⚠️ Certifique-se de que o servidor está rodando em <strong>http://localhost:5000</strong></p>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        function showResult(testNumber, data, isSuccess = true) {
+            const resultDiv = document.getElementById(`result${testNumber}`);
+            const statusSpan = document.getElementById(`status${testNumber}`);
+            
+            resultDiv.className = `result show ${isSuccess ? 'success' : 'error'}`;
+            resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            
+            statusSpan.className = `status ${isSuccess ? 'ok' : 'fail'}`;
+            statusSpan.textContent = isSuccess ? 'OK' : 'ERRO';
+        }
+
+        function showLoading(testNumber) {
+            const statusSpan = document.getElementById(`status${testNumber}`);
+            statusSpan.className = 'status loading';
+            statusSpan.textContent = 'Testando...';
+        }
+
+        async function testHealth() {
+            showLoading(1);
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                showResult(1, data, response.ok);
+            } catch (error) {
+                showResult(1, { error: error.message }, false);
+            }
+        }
+
+        async function testLogin() {
+            showLoading(2);
+            try {
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'mariana.silva@empresa.com',
+                        password: 'senha123'
+                    })
+                });
+                const data = await response.json();
+                showResult(2, data, response.ok);
+            } catch (error) {
+                showResult(2, { error: error.message }, false);
+            }
+        }
+
+        async function testCheckin() {
+            showLoading(3);
+            try {
+                const response = await fetch(`${API_URL}/checkin`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: 'user001',
+                        mood: 4,
+                        energy: 4,
+                        workload: 'adequada',
+                        comment: 'Teste feito pelo HTML!'
+                    })
+                });
+                const data = await response.json();
+                showResult(3, data, response.ok);
+            } catch (error) {
+                showResult(3, { error: error.message }, false);
+            }
+        }
+
+        async function testDashboard() {
+            showLoading(4);
+            try {
+                const response = await fetch(`${API_URL}/dashboard/personal/user001`);
+                const data = await response.json();
+                showResult(4, data, response.ok);
+            } catch (error) {
+                showResult(4, { error: error.message }, false);
+            }
+        }
+
+        async function testResources() {
+            showLoading(5);
+            try {
+                const response = await fetch(`${API_URL}/resources`);
+                const data = await response.json();
+                showResult(5, data, response.ok);
+            } catch (error) {
+                showResult(5, { error: error.message }, false);
+            }
+        }
+
+        async function testAdmin() {
+            showLoading(6);
+            try {
+                const response = await fetch(`${API_URL}/dashboard/admin`);
+                const data = await response.json();
+                showResult(6, data, response.ok);
+            } catch (error) {
+                showResult(6, { error: error.message }, false);
+            }
+        }
+    </script>
+</body>
+</html>
