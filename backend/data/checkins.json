@@ -213,6 +213,70 @@
         "Experimentar algo novo da biblioteca de recursos",
         "Compartilhar dicas com colegas"
       ]
+    },
+    {
+      "id": "ck20251120131551025132",
+      "userId": "user002",
+      "date": "2025-11-20",
+      "time": "13:15:51",
+      "mood": 4,
+      "energy": 4,
+      "workload": "leve",
+      "comment": "",
+      "aiSuggestion": "Que ótimo ter um dia mais tranquilo! Aproveite para se organizar, aprender algo novo ou simplesmente descansar. Dias leves também são produtivos!",
+      "recommendedResources": [
+        5,
+        3
+      ],
+      "suggestedActions": [
+        "Organizar tarefas futuras",
+        "Investir em aprendizado",
+        "Fazer networking interno",
+        "Documentar processos",
+        "Ou simplesmente relaxar!"
+      ]
+    },
+    {
+      "id": "ck20251120131742562332",
+      "userId": "user001",
+      "date": "2025-11-20",
+      "time": "13:17:42",
+      "mood": 5,
+      "energy": 3,
+      "workload": "adequada",
+      "comment": "",
+      "aiSuggestion": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de manter suas práticas de autocuidado. Pequenas ações diárias fazem grande diferença.",
+      "recommendedResources": [
+        3,
+        5
+      ],
+      "suggestedActions": [
+        "Manter pausas regulares",
+        "Continuar práticas de bem-estar",
+        "Experimentar algo novo da biblioteca de recursos",
+        "Compartilhar dicas com colegas"
+      ]
+    },
+    {
+      "id": "ck20251120135717520222",
+      "userId": "user001",
+      "date": "2025-11-20",
+      "time": "13:57:17",
+      "mood": 4,
+      "energy": 4,
+      "workload": "adequada",
+      "comment": "Teste feito pelo HTML!",
+      "aiSuggestion": "Você está em um bom equilíbrio hoje! Continue assim e não se esqueça de manter suas práticas de autocuidado. Pequenas ações diárias fazem grande diferença.",
+      "recommendedResources": [
+        3,
+        5
+      ],
+      "suggestedActions": [
+        "Manter pausas regulares",
+        "Continuar práticas de bem-estar",
+        "Experimentar algo novo da biblioteca de recursos",
+        "Compartilhar dicas com colegas"
+      ]
     }
   ]
 }
