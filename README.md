@@ -13,7 +13,6 @@ Preparar pessoas e organizações para o futuro do trabalho, onde tecnologia e r
 ## 🛠️ Tecnologias Utilizadas
 
 - **Frontend:** React, Bootstrap, HTML/CSS/JavaScript
-- **Backend:** Python (Flask), JSON
 - **Gráficos:** Recharts
 - **IA:** Sistema de recomendações e detecção de padrões
 
@@ -35,16 +34,6 @@ mindbalance/
 
 ## 🚀 Como Executar
 
-### Backend (Python)
-
-```bash
-cd backend
-pip install -r requirements.txt --break-system-packages
-python app.py
-```
-
-O servidor estará disponível em: `http://localhost:5000`
-
 ### Frontend (React)
 
 ```bash
@@ -57,7 +46,7 @@ A aplicação estará disponível em: `http://localhost:3000`
 
 ## 👥 Equipe
 
-Projeto desenvolvido para disciplina de Futuro do Trabalho, Inovação e Tecnologia.
+Projeto desenvolvido para a segunda Global Solution de 2025 da FIAP
 
 ## 📄 Licença
 
