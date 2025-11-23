@@ -305,6 +305,108 @@ export const dashboardService = {
       insights,
     };
   },
+getAdmin: async (department = "all", period = "week") => {
+    try {
+      const users = (await loadJSON("users.json")).users || [];
+      const checkins = (await loadJSON("checkins.json")).checkins || [];
+
+      // Filtrar por departamento
+      let relevantCheckins = checkins;
+
+      if (department !== "all") {
+        const deptUsers = users
+          .filter((u) => u.department === department)
+          .map((u) => u.id);
+
+        relevantCheckins = checkins.filter((c) =>
+          deptUsers.includes(c.userId)
+        );
+      }
+
+      // Estatísticas gerais
+      const overallStats = calculateWellbeingStats(relevantCheckins, period);
+
+      // Taxa de participação
+      const totalUsers = users.length;
+      const usersWithCheckins = new Set(
+        relevantCheckins.map((c) => c.userId)
+      ).size;
+
+      const participationRate =
+        totalUsers > 0
+          ? Number(((usersWithCheckins / totalUsers) * 100).toFixed(1))
+          : 0;
+
+      // Alertas por equipe
+      const departments = [...new Set(users.map((u) => u.department))];
+      const alerts = [];
+
+      for (const dept of departments) {
+        const deptUsers = users
+          .filter((u) => u.department === dept)
+          .map((u) => u.id);
+
+        const deptCheckins = relevantCheckins.filter((c) =>
+          deptUsers.includes(c.userId)
+        );
+
+        const deptStats = calculateWellbeingStats(deptCheckins, "week");
+
+        if (deptStats.avgMood < 2.5) {
+          alerts.push({
+            team: dept,
+            reason: `Bem-estar abaixo do ideal (média ${deptStats.avgMood})`,
+            severity: deptStats.avgMood < 2 ? "high" : "medium",
+          });
+        }
+
+        if (deptStats.trend === "declining") {
+          alerts.push({
+            team: dept,
+            reason: "Tendência de queda no bem-estar",
+            severity: "medium",
+          });
+        }
+      }
+
+      // Distribuição de carga de trabalho
+      const workloadDist = {
+        leve: 0,
+        adequada: 0,
+        pesada: 0,
+      };
+
+      relevantCheckins.forEach((c) => {
+        if (workloadDist[c.workload] !== undefined) {
+          workloadDist[c.workload] += 1;
+        }
+      });
+
+      const total = workloadDist.leve + workloadDist.adequada + workloadDist.pesada;
+
+      const workloadPercent = {
+        leve: total > 0 ? Number(((workloadDist.leve / total) * 100).toFixed(1)) : 0,
+        adequada: total > 0 ? Number(((workloadDist.adequada / total) * 100).toFixed(1)) : 0,
+        pesada: total > 0 ? Number(((workloadDist.pesada / total) * 100).toFixed(1)) : 0,
+      };
+
+      return {
+        success: true,
+        overallWellbeing: overallStats.avgMood,
+        participationRate,
+        alerts,
+        trends: overallStats,
+        workloadDistribution: workloadPercent,
+      };
+
+    } catch (err) {
+      console.error("Admin service error:", err);
+      return {
+        success: false,
+        message: err.message,
+      };
+    }
+  }
 };
 
 export const resourcesService = {
