@@ -3,20 +3,33 @@ import checkinsFile from "../data/checkins.json";
 import suggestionsFile from "../data/suggestions.json";
 import resourcesFile from "../data/resources.json";
 
-function loadJSON(name) {
+// ========================= STORAGE =========================
+
+// now async
+export async function loadJSON(name) {
   const ls = localStorage.getItem(name);
   if (ls) return JSON.parse(ls);
 
+  let file = null;
   switch (name) {
-    case "users.json": return usersFile;
-    case "checkins.json": return checkinsFile;
-    case "suggestions.json": return suggestionsFile;
-    case "resources.json": return resourcesFile;
+    case "users.json": file = usersFile; break;
+    case "checkins.json": file = checkinsFile; break;
+    case "suggestions.json": file = suggestionsFile; break;
+    case "resources.json": file = resourcesFile; break;
     default: return {};
   }
+
+  const cloned = JSON.parse(JSON.stringify(file));
+
+  // async simulation
+  await Promise.resolve();
+
+  localStorage.setItem(name, JSON.stringify(cloned));
+  return cloned;
 }
 
-function saveJSON(name, data) {
+export async function saveJSON(name, data) {
+  await Promise.resolve(); // async placeholder
   localStorage.setItem(name, JSON.stringify(data));
 }
 
@@ -25,8 +38,8 @@ export const generateId = (prefix) => `${prefix}${Date.now()}`;
 
 // ========================= ANALYTICS =========================
 
-export function analyzeCheckin(checkin, userHistory) {
-  const suggestionData = loadJSON("suggestions.json").suggestions;
+export async function analyzeCheckin(checkin, userHistory) {
+  const suggestionData = (await loadJSON("suggestions.json")).suggestions;
 
   let consecutiveHeavy = 0;
   let consecutiveLowMood = 0;
@@ -86,6 +99,7 @@ export function analyzeCheckin(checkin, userHistory) {
   );
 }
 
+
 // ========================= WELLBEING =========================
 
 export function calculateWellbeingStats(checkins, period = "week") {
@@ -127,14 +141,15 @@ export function calculateWellbeingStats(checkins, period = "week") {
 }
 
 
-// ========================= PURE BACKEND FUNCTIONS =========================
+// ========================= BACKEND =========================
 
-export function login(email, password) {
-  const users = loadJSON("users.json").users;
+export async function login(email, password) {
+  const users = (await loadJSON("users.json")).users;
 
   const user = users.find((u) => u.email === email);
   if (!user) return { success: false, message: "Usuário não encontrado" };
-  if (user.password !== password) return { success: false, message: "Senha incorreta" };
+  if (user.password !== password)
+    return { success: false, message: "Senha incorreta" };
 
   const safeUser = { ...user };
   delete safeUser.password;
@@ -146,8 +161,8 @@ export function login(email, password) {
   };
 }
 
-export function submitCheckin(data) {
-  const checkinsData = loadJSON("checkins.json");
+export async function submitCheckin(data) {
+  const checkinsData = await loadJSON("checkins.json");
 
   const userHistory = checkinsData.checkins.filter((c) => c.userId === data.userId);
   const now = new Date();
@@ -163,20 +178,20 @@ export function submitCheckin(data) {
     comment: data.comment || "",
   };
 
-  const ai = analyzeCheckin(newCheckin, userHistory);
+  const ai = await analyzeCheckin(newCheckin, userHistory);
 
   newCheckin.aiSuggestion = ai.message;
   newCheckin.recommendedResources = ai.resourcesRecommended || [];
   newCheckin.suggestedActions = ai.actions || [];
 
   checkinsData.checkins.push(newCheckin);
-  saveJSON("checkins.json", checkinsData);
+  await saveJSON("checkins.json", checkinsData);
 
   return { success: true, checkin: newCheckin };
 }
 
-export function getHistory(userId, period = "week") {
-  const data = loadJSON("checkins.json").checkins;
+export async function getHistory(userId, period = "week") {
+  const data = (await loadJSON("checkins.json")).checkins;
 
   const userCheckins = data
     .filter((c) => c.userId === userId)
@@ -196,8 +211,8 @@ export function getHistory(userId, period = "week") {
   };
 }
 
-export function getResources({ category, difficulty } = {}) {
-  const data = loadJSON("resources.json");
+export async function getResources({ category, difficulty } = {}) {
+  const data = await loadJSON("resources.json");
   let resources = data.resources;
 
   if (category) resources = resources.filter((r) => r.category === category);
@@ -206,8 +221,8 @@ export function getResources({ category, difficulty } = {}) {
   return { success: true, resources, categories: data.categories };
 }
 
-export function getResourceById(id) {
-  const data = loadJSON("resources.json");
+export async function getResourceById(id) {
+  const data = await loadJSON("resources.json");
   const resource = data.resources.find((r) => r.id === Number(id));
   if (!resource) return { success: false, message: "Recurso não encontrado" };
   return { success: true, resource };
@@ -224,11 +239,11 @@ export function health() {
 }
 
 
-// ========================= SERVICES (AGORA SEM REQUEST) =========================
+// ========================= SERVICES =========================
 
 export const authService = {
   login: async (email, password) => {
-    const data = login(email, password);
+    const data = await login(email, password);
     if (data.success && data.token) {
       localStorage.setItem("mindbalance_token", data.token);
     }
@@ -243,47 +258,62 @@ export const authService = {
 
 export const checkinService = {
   create: async (checkinData) => {
-    return submitCheckin(checkinData);
+    return await submitCheckin(checkinData);
   },
 
   getHistory: async (userId, period = "week") => {
-    return getHistory(userId, period);
+    return await getHistory(userId, period);
   },
 };
 
 export const dashboardService = {
-  getPersonal: async (userId) => {
-    const history = getHistory(userId).history;
-    const stats = calculateWellbeingStats(history);
-    return { success: true, stats };
-  },
+   getPersonal: async (userId) => {
+    const data = await getHistory(userId);
+    const history = data.history
+    // Estatísticas semanais
+    const weekSummary = calculateWellbeingStats(history, "week");
 
-  getAdmin: async (department = "all", period = "week") => {
-    const users = loadJSON("users.json").users;
-    const checkins = loadJSON("checkins.json").checkins;
+    // Criar dados para o gráfico
+    const chartData = history
+      .slice() // copiar
+      .sort((a, b) => new Date(a.date) - new Date(b.date)) // ordenar crescente
+      .map((item) => ({
+        date: item.date,
+        mood: item.mood,
+        energy: item.energy,
+      }));
 
-    const filtered =
-      department === "all"
-        ? users
-        : users.filter((u) => u.department === department);
+    // Insights simples baseados nos números
+    const insights = [];
 
-    const result = filtered.map((u) => {
-      const history = checkins.filter((c) => c.userId === u.id);
-      const stats = calculateWellbeingStats(history, period);
-      return { user: u, stats };
-    });
+    if (weekSummary.avgMood < 3)
+      insights.push("Seu humor está abaixo do ideal esta semana. Tente fazer pausas regulares e dormir bem.");
 
-    return { success: true, result };
+    if (weekSummary.avgEnergy < 3)
+      insights.push("Sua energia está baixa. Hidrate-se e tente evitar sobrecarga de tarefas.");
+
+    if (weekSummary.trend === "improving")
+      insights.push("Ótimo progresso! Seu bem-estar está melhorando nos últimos dias.");
+
+    if (insights.length === 0)
+      insights.push("Continue registrando seus check-ins diariamente para receber análises mais precisas.");
+
+    return {
+      success: true,
+      weekSummary,
+      chartData,
+      insights,
+    };
   },
 };
 
 export const resourcesService = {
   getAll: async (category = null, difficulty = null) => {
-    return getResources({ category, difficulty });
+    return await getResources({ category, difficulty });
   },
 
   getById: async (id) => {
-    return getResourceById(id);
+    return await getResourceById(id);
   },
 };
 
